@@ -53,7 +53,7 @@ app.get('/api/bundles', async (req, res) => {
 app.use(express.static(path.join(__dirname, 'public')));
 
 // Catch-all for React Router
-app.get('*', (req, res) => {
+app.use((req, res) => {
   res.sendFile(path.join(__dirname, 'public', 'index.html'));
 });
 
