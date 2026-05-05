@@ -58,7 +58,7 @@ app.get('*', (req, res) => {
 });
 
 // app.listen MUST BE LAST
-const PORT = process.env.PORT || 5000;
+
 app.listen(PORT, () => {
   console.log(`Server running on port ${PORT}`);
 });
