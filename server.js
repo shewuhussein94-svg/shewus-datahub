@@ -75,10 +75,7 @@ app.get("/api/order/:orderId", (req, res) => {
   });
 });
 
-// ===== YOUR CATCH-ALL STAYS LAST =====
-app.use((req, res) => {
-  res.sendFile(path.join(__dirname, 'public', 'index.html'));
-});
+
 // CATCH-ALL ROUTE
 app.get( (req, res) => {
   res.sendFile(path.join(__dirname, 'public', 'index.html'));
