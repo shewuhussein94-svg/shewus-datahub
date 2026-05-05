@@ -1,0 +1,314 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+<title>SHEWU’s DataHub — Buy Data Bundles in Ghana</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800;900&family=Space+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet"/>
+<style>
+:root{--bg:#f7f9fc;--white:#ffffff;--ink:#0d1117;--ink2:#3a3f4b;--muted:#8a919e;--border:#e4e8ef;--mtn:#ffcc00;--mtn-dark:#e6b800;--mtn-text:#1a1200;--telecel:#e3001b;--telecel-dark:#c0001a;--airteltigo:#e87722;--airteltigo-dark:#d06a18;--green:#16a34a;--green-light:#dcfce7;--shadow:0 2px 16px rgba(13,17,23,0.08);--shadow-md:0 4px 32px rgba(13,17,23,0.13);--radius:14px}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{background:var(--bg);color:var(--ink);font-family:'Space Grotesk',sans-serif;font-size:15px;line-height:1.6;min-height:100vh}
+button{cursor:pointer;font-family:'Space Grotesk',sans-serif}
+input,select{font-family:'Space Grotesk',sans-serif}
+::-webkit-scrollbar{width:5px}::-webkit-scrollbar-track{background:var(--bg)}::-webkit-scrollbar-thumb{background:var(--border);border-radius:4px}
+@keyframes fadeUp{from{opacity:0;transform:translateY(18px)}to{opacity:1;transform:translateY(0)}}
+@keyframes fadeIn{from{opacity:0}to{opacity:1}}
+@keyframes slideDown{from{opacity:0;transform:translateY(-12px)}to{opacity:1;transform:translateY(0)}}
+@keyframes spin{to{transform:rotate(360deg)}}
+.fade-up{animation:fadeUp.45s ease forwards}
+.delay-1{animation-delay:.08s;opacity:0}.delay-2{animation-delay:.18s;opacity:0}.delay-3{animation-delay:.28s;opacity:0}
+header{background:var(--white);border-bottom:1px solid var(--border);position:sticky;top:0;z-index:100;padding:0 24px;display:flex;align-items:center;gap:16px;height:62px;box-shadow:0 1px 0 var(--border)}
+.logo{font-family:'Nunito',sans-serif;font-weight:900;font-size:20px;color:var(--ink);text-decoration:none;display:flex;align-items:center;gap:6px;flex-shrink:0}
+.logo-dot{width:10px;height:10px;background:var(--mtn);border-radius:50%;display:inline-block}
+.header-center{flex:1;display:flex;justify-content:center}
+.nav-tabs{display:flex;gap:4px}
+.nav-tab{padding:7px 16px;border-radius:8px;font-size:13px;font-weight:600;border:none;background:transparent;color:var(--muted);transition:all.18s;letter-spacing:.01em}
+.nav-tab:hover{background:var(--bg);color:var(--ink)}
+.nav-tab.active{background:var(--ink);color:#fff}
+.header-right{display:flex;align-items:center;gap:10px;margin-left:auto}
+.cart-btn{display:flex;align-items:center;gap:6px;background:var(--bg);border:1.5px solid var(--border);border-radius:10px;padding:7px 14px;font-size:13px;font-weight:600;color:var(--ink);transition:all.18s}
+.cart-btn:hover{border-color:var(--ink)}
+.cart-count{background:var(--telecel);color:#fff;border-radius:50%;width:18px;height:18px;font-size:10px;font-weight:800;display:flex;align-items:center;justify-content:center;font-family:'JetBrains Mono',monospace}
+.btn{padding:9px 20px;border-radius:10px;font-size:13px;font-weight:700;border:1.5px solid var(--border);background:var(--white);color:var(--ink);transition:all.18s}
+.btn:hover{border-color:var(--ink)}
+.btn-primary{background:var(--ink);color:#fff;border-color:var(--ink)}
+.btn-primary:hover{background:#1e2530}
+.btn-green{background:var(--green);color:#fff;border-color:var(--green)}
+.btn-green:hover{background:#15803d}
+.btn-lg{padding:13px 28px;font-size:15px;border-radius:12px}
+.btn-full{width:100%}
+.page{display:none;animation:fadeIn.35s ease}
+.page.active{display:block}
+.hero{background:var(--ink);padding:56px 24px 64px;text-align:center;position:relative;overflow:hidden}
+.hero::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse 80% 60% at 50% 0%, #1e2d4a 0%, transparent 70%)}
+.hero-badge{display:inline-flex;align-items:center;gap:8px;background:rgba(255,255,255,0.08);border:1px solid rgba(255,255,255,0.15);border-radius:20px;padding:6px 16px;font-size:12px;color:rgba(255,255,255,0.7);margin-bottom:20px;font-family:'JetBrains Mono',monospace;letter-spacing:.05em}
+.hero-badge span{color:var(--mtn)}
+.hero h1{font-family:'Nunito',sans-serif;font-size:clamp(32px,5vw,54px);font-weight:900;color:#fff;margin-bottom:16px;line-height:1.1;position:relative}
+.hero h1 em{color:var(--mtn);font-style:normal}
+.hero-sub{color:rgba(255,255,255,0.6);font-size:16px;max-width:500px;margin:0 auto 32px}
+.hero-networks{display:flex;justify-content:center;gap:12px;flex-wrap:wrap;margin-bottom:36px;position:relative}
+.net-pill{display:flex;align-items:center;gap:8px;background:rgba(255,255,255,0.08);border:1px solid rgba(255,255,255,0.15);border-radius:24px;padding:8px 20px;font-size:14px;font-weight:700;color:#fff;transition:all.2s;cursor:pointer}
+.net-pill:hover{background:rgba(255,255,255,0.15)}
+.net-pill.mtn{border-color:#ffcc0044}.net-pill.telecel{border-color:#e3001b44}.net-pill.airteltigo{border-color:#e8772244}
+.net-dot{width:10px;height:10px;border-radius:50%}
+.hero-stats{display:flex;justify-content:center;gap:32px;flex-wrap:wrap;position:relative}
+.hero-stat{text-align:center}
+.hero-stat-num{font-family:'Nunito',sans-serif;font-size:28px;font-weight:900;color:#fff;line-height:1}
+.hero-stat-label{font-size:12px;color:rgba(255,255,255,0.5);margin-top:4px}
+.shop-container{max-width:1100px;margin:0 auto;padding:32px 20px}
+.shop-header{display:flex;align-items:center;justify-content:space-between;margin-bottom:28px;flex-wrap:wrap;gap:12px}
+.shop-title{font-family:'Nunito',sans-serif;font-size:26px;font-weight:900;color:var(--ink)}
+.network-tabs{display:flex;gap:8px;flex-wrap:wrap}
+.net-tab{display:flex;align-items:center;gap:8px;padding:9px 18px;border-radius:24px;font-size:13px;font-weight:700;border:2px solid var(--border);background:var(--white);color:var(--ink);transition:all.2s}
+.net-tab:hover{border-color:currentColor}
+.net-tab.active-mtn{background:var(--mtn);border-color:var(--mtn);color:var(--mtn-text)}
+.net-tab.active-telecel{background:var(--telecel);border-color:var(--telecel);color:#fff}
+.net-tab.active-airteltigo{background:var(--airteltigo);border-color:var(--airteltigo);color:#fff}
+.net-tab.active-all{background:var(--ink);border-color:var(--ink);color:#fff}
+.bundle-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:18px}
+.bundle-card{background:var(--white);border:2px solid var(--border);border-radius:var(--radius);overflow:hidden;box-shadow:var(--shadow);transition:all.22s;display:flex;flex-direction:column}
+.bundle-card:hover{box-shadow:var(--shadow-md);transform:translateY(-3px)}
+.bundle-card.mtn-card{border-top:4px solid var(--mtn)}
+.bundle-card.telecel-card{border-top:4px solid var(--telecel)}
+.bundle-card.airteltigo-card{border-top:4px solid var(--airteltigo)}
+.bundle-card.popular{position:relative}
+.popular-badge{position:absolute;top:14px;right:14px;background:var(--telecel);color:#fff;font-size:10px;font-weight:800;letter-spacing:.06em;padding:3px 9px;border-radius:20px;font-family:'JetBrains Mono',monospace;text-transform:uppercase}
+.bundle-top{padding:20px 20px 14px;display:flex;align-items:center;gap:12px}
+.net-logo{width:42px;height:42px;border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:18px;font-weight:900;flex-shrink:0;font-family:'Nunito',sans-serif}
+.net-logo.mtn{background:var(--mtn);color:var(--mtn-text)}
+.net-logo.telecel{background:var(--telecel);color:#fff}
+.net-logo.airteltigo{background:var(--airteltigo);color:#fff}
+.bundle-network{font-size:11px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--muted)}
+.bundle-size{font-family:'Nunito',sans-serif;font-size:24px;font-weight:900;color:var(--ink);line-height:1}
+.bundle-body{padding:0 20px 16px;flex:1}
+.bundle-validity{display:inline-flex;align-items:center;gap:5px;background:var(--bg);border-radius:6px;padding:4px 10px;font-size:12px;color:var(--ink2);margin-bottom:10px;font-family:'JetBrains Mono',monospace}
+.bundle-desc{font-size:13px;color:var(--muted);line-height:1.5;margin-bottom:14px}
+.bundle-features{list-style:none;display:flex;flex-direction:column;gap:5px;margin-bottom:14px}
+.bundle-features li{display:flex;align-items:center;gap:7px;font-size:12px;color:var(--ink2)}
+.bundle-features li::before{content:'✓';color:var(--green);font-weight:800;font-size:11px}
+.bundle-footer{padding:14px 20px;border-top:1px solid var(--border);display:flex;align-items:center;justify-content:space-between;gap:10px}
+.bundle-price{font-family:'Nunito',sans-serif;font-size:26px;font-weight:900;color:var(--ink);line-height:1}
+.bundle-price-sub{font-size:11px;color:var(--muted);font-family:'JetBrains Mono',monospace}
+.add-btn{padding:10px 18px;border-radius:10px;font-size:13px;font-weight:700;border:none;color:#fff;transition:all.18s;white-space:nowrap}
+.add-btn.mtn{background:var(--mtn-dark);color:var(--mtn-text)}
+.add-btn.mtn:hover{background:var(--mtn);transform:scale(1.04)}
+.add-btn.telecel{background:var(--telecel)}
+.add-btn.telecel:hover{background:var(--telecel-dark);transform:scale(1.04)}
+.add-btn.airteltigo{background:var(--airteltigo)}
+.add-btn.airteltigo:hover{background:var(--airteltigo-dark);transform:scale(1.04)}
+.cart-page{max-width:680px;margin:0 auto;padding:32px 20px}
+.cart-empty{text-align:center;padding:64px 0}
+.cart-empty-icon{font-size:52px;margin-bottom:16px}
+.cart-empty h3{font-family:'Nunito',sans-serif;font-size:22px;font-weight:800;margin-bottom:8px}
+.cart-empty p{color:var(--muted);margin-bottom:24px}
+.cart-item{background:var(--white);border:1.5px solid var(--border);border-radius:var(--radius);padding:18px 20px;display:flex;align-items:center;gap:16px;margin-bottom:12px}
+.cart-item-logo{width:40px;height:40px;border-radius:9px;display:flex;align-items:center;justify-content:center;font-weight:900;font-size:15px;font-family:'Nunito',sans-serif;flex-shrink:0}
+.cart-item-info{flex:1}
+.cart-item-name{font-weight:700;font-size:15px;color:var(--ink)}
+.cart-item-meta{font-size:12px;color:var(--muted);font-family:'JetBrains Mono',monospace}
+.cart-item-price{font-family:'Nunito',sans-serif;font-size:20px;font-weight:900;color:var(--ink)}
+.cart-item-remove{background:none;border:none;color:var(--muted);font-size:18px;padding:4px 8px;border-radius:6px;transition:all.18s}
+.cart-item-remove:hover{background:#fee2e2;color:var(--telecel)}
+.cart-summary{background:var(--white);border:1.5px solid var(--border);border-radius:var(--radius);padding:24px;margin-top:20px}
+.cart-summary-row{display:flex;justify-content:space-between;margin-bottom:10px;font-size:14px}
+.cart-summary-row.total{font-weight:800;font-size:18px;border-top:1px solid var(--border);padding-top:14px;margin-top:6px;font-family:'Nunito',sans-serif}
+.phone-input-wrap{margin-top:18px}
+.phone-input-wrap label{font-size:13px;font-weight:600;color:var(--ink2);display:block;margin-bottom:6px}
+.phone-row{display:flex;gap:8px}
+.phone-prefix{background:var(--bg);border:1.5px solid var(--border);border-radius:10px;padding:11px 14px;font-family:'JetBrains Mono',monospace;font-size:14px;font-weight:600;color:var(--ink);flex-shrink:0}
+.phone-input{flex:1;background:var(--bg);border:1.5px solid var(--border);border-radius:10px;padding:11px 14px;font-size:14px;color:var(--ink);outline:none;transition:border-color.18s}
+.phone-input:focus{border-color:var(--ink)}
+.toast{position:fixed;bottom:24px;right:24px;background:var(--ink);color:#fff;padding:14px 20px;border-radius:12px;display:flex;align-items:center;gap:10px;font-size:14px;font-weight:600;box-shadow:var(--shadow-md);z-index:500;transform:translateY(80px);opacity:0;transition:all.35s cubic-bezier(.34,1.56,.64,1);max-width:320px}
+.toast.show{transform:translateY(0);opacity:1}
+.toast-icon{font-size:18px;flex-shrink:0}
+@media(max-width:640px){header{padding:0 14px}.header-center{display:none}.hero h1{font-size:28px}.bundle-grid{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+<header>
+  <a class="logo" href="#" onclick="showPage('home')"><span class="logo-dot"></span>SHEWU’s<span style="color:var(--mtn)">DataHub</span></a>
+  <div class="header-center">
+    <div class="nav-tabs">
+      <button class="nav-tab active" onclick="showPage('home');setActiveTab(this)">Home</button>
+      <button class="nav-tab" onclick="showPage('shop');setActiveTab(this)">Buy Data</button>
+    </div>
+  </div>
+  <div class="header-right">
+    <button class="cart-btn" onclick="showPage('cart')">🛒 Cart <span class="cart-count" id="cartCount">0</span></button>
+  </div>
+</header>
+<div class="page active" id="page-home">
+  <div class="hero">
+    <div class="hero-badge">🇬🇭 SHEWU’s #1 Data Bundle Store · <span>Instant Delivery</span></div>
+    <h1 class="fade-up">Buy <em>Data Bundles</em><br/>Fast & Cheap 🚀</h1>
+    <p class="hero-sub fade-up delay-1">MTN, Telecel & AirtelTigo data bundles delivered to your phone instantly. Best prices in Ghana.</p>
+    <div class="hero-networks fade-up delay-2">
+      <div class="net-pill mtn" onclick="showPage('shop');filterNetwork('MTN')"><span class="net-dot" style="background:var(--mtn)"></span>MTN Ghana</div>
+      <div class="net-pill telecel" onclick="showPage('shop');filterNetwork('Telecel')"><span class="net-dot" style="background:var(--telecel)"></span>Telecel</div>
+      <div class="net-pill airteltigo" onclick="showPage('shop');filterNetwork('AirtelTigo')"><span class="net-dot" style="background:var(--airteltigo)"></span>AirtelTigo</div>
+    </div>
+  </div>
+  <div style="max-width:1100px;margin:0 auto;padding:40px 20px;">
+    <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:24px;">
+      <h2 style="font-family:'Nunito',sans-serif;font-size:24px;font-weight:900;">🔥 Popular Bundles</h2>
+      <button class="btn btn-primary" onclick="showPage('shop');setActiveTab(document.querySelectorAll('.nav-tab')[1])">View All →</button>
+    </div>
+    <div class="bundle-grid" id="featuredGrid"></div>
+  </div>
+</div>
+<div class="page" id="page-shop">
+  <div class="shop-container">
+    <div class="shop-header">
+      <div class="shop-title">Buy Data Bundles</div>
+      <div class="network-tabs">
+        <button class="net-tab active-all" id="tab-all" onclick="filterNetwork('All',this)">All Networks</button>
+        <button class="net-tab" id="tab-mtn" onclick="filterNetwork('MTN',this)">🟡 MTN</button>
+        <button class="net-tab" id="tab-telecel" onclick="filterNetwork('Telecel',this)">🔴 Telecel</button>
+        <button class="net-tab" id="tab-airteltigo" onclick="filterNetwork('AirtelTigo',this)">🟠 AirtelTigo</button>
+      </div>
+    </div>
+    <div class="bundle-grid" id="shopGrid"></div>
+  </div>
+</div>
+<div class="page" id="page-cart">
+  <div class="cart-page">
+    <h2 style="font-family:'Nunito',sans-serif;font-size:26px;font-weight:900;margin-bottom:24px;">🛒 Your Cart</h2>
+    <div id="cartItems"></div>
+    <div id="cartSummary"></div>
+  </div>
+</div>
+<div class="toast" id="toast"><span class="toast-icon" id="toastIcon">✓</span><span id="toastMsg"></span></div>
+<script>
+const MOMO_NUMBER = '0552718330';
+const API_URL = 'http://localhost:5000/api';
+let BUNDLES = [];
+const COLORS = {MTN:{cls:'mtn',top:'mtn-card'},Telecel:{cls:'telecel',top:'telecel-card'},AirtelTigo:{cls:'airteltigo',top:'airteltigo-card'},Vodafone:{cls:'telecel',top:'telecel-card'}};
+let cart = JSON.parse(localStorage.getItem('dgh_cart')||'[]');
+let activeFilter = 'All';
+function saveCart(){localStorage.setItem('dgh_cart',JSON.stringify(cart));}
+document.addEventListener('DOMContentLoaded',async()=>{
+  await loadBundlesFromAPI();
+  renderFeatured();
+  renderShop();
+  updateCartCount();
+});
+async function loadBundlesFromAPI(){
+  try {
+    const res = await fetch(`${API_URL}/bundles`);
+    const data = await res.json();
+    BUNDLES = data.map(b=>({
+      id:b._id,
+      network:b.network==='Vodafone'?'Telecel':b.network,
+      size:b.size,
+      validity:b.validity,
+      price:b.price,
+      desc:`${b.network} ${b.size} bundle`,
+      features:['Valid '+b.validity,'All sites','Instant delivery'],
+      popular:b.price===11||b.price===12||b.price===10
+    }));
+  } catch(err){
+    console.log('Failed to load bundles:',err);
+    BUNDLES = [];
+  }
+}
+function showPage(name){
+  document.querySelectorAll('.page').forEach(p=>p.classList.remove('active'));
+  document.getElementById('page-'+name).classList.add('active');
+  if(name==='cart') renderCart();
+  window.scrollTo({top:0,behavior:'smooth'});
+}
+function setActiveTab(el){
+  document.querySelectorAll('.nav-tab').forEach(t=>t.classList.remove('active'));
+  el.classList.add('active');
+}
+function bundleHTML(b, showPopular=true){
+  const c = COLORS[b.network]||COLORS.MTN;
+  return `<div class="bundle-card ${c.top} ${b.popular && showPopular?'popular':''}">
+      ${b.popular && showPopular?'<div class="popular-badge">Popular</div>':''}
+      <div class="bundle-top">
+        <div class="net-logo ${c.cls}">${b.network==='MTN'?'M':b.network==='Telecel'?'T':'AT'}</div>
+        <div><div class="bundle-network">${b.network} Ghana</div><div class="bundle-size">${b.size}</div></div>
+      </div>
+      <div class="bundle-body">
+        <div class="bundle-validity">⏱ ${b.validity}</div>
+        <div class="bundle-desc">${b.desc}</div>
+        <ul class="bundle-features">${b.features.map(f=>`<li>${f}</li>`).join('')}</ul>
+      </div>
+      <div class="bundle-footer">
+        <div class="bundle-price-wrap"><div class="bundle-price">GH₵${b.price.toFixed(2)}</div><div class="bundle-price-sub">one-time</div></div>
+        <button class="add-btn ${c.cls}" onclick="addToCart('${b.id}')">Add to Cart</button>
+      </div>
+    </div>`;
+}
+function renderFeatured(){
+  const popular = BUNDLES.filter(b=>b.popular);
+  document.getElementById('featuredGrid').innerHTML = popular.length?popular.map(b=>bundleHTML(b)).join(''):'<p style="text-align:center;color:var(--muted);padding:40px;">Loading bundles from MongoDB...</p>';
+}
+function renderShop(){
+  const filtered = activeFilter==='All'?BUNDLES:BUNDLES.filter(b=>b.network===activeFilter);
+  document.getElementById('shopGrid').innerHTML = filtered.length?filtered.map(b=>bundleHTML(b)).join(''):'<p style="text-align:center;color:var(--muted);padding:40px;">No bundles found. Make sure node server.js is running!</p>';
+}
+function filterNetwork(net, btn){
+  activeFilter = net;
+  document.querySelectorAll('.net-tab').forEach(t=>t.className='net-tab');
+  if(btn) btn.className=`net-tab active-${net==='All'?'all':net==='MTN'?'mtn':net==='Telecel'?'telecel':'airteltigo'}`;
+  renderShop();
+}
+function addToCart(id){
+  const b = BUNDLES.find(x=>x.id===id);
+  if(!b) return;
+  cart.push({id:b.id,network:b.network,size:b.size,price:b.price,validity:b.validity});
+  saveCart();
+  updateCartCount();
+  showToast(`${b.network} ${b.size} added to cart`);
+}
+function renderCart(){
+  const itemsEl = document.getElementById('cartItems');
+  const summaryEl = document.getElementById('cartSummary');
+  if(!cart.length){
+    itemsEl.innerHTML = `<div class="cart-empty"><div class="cart-empty-icon">🛒</div><h3>Your cart is empty</h3><p>Add some data bundles to get started</p><button class="btn btn-primary" onclick="showPage('shop')">Browse Bundles</button></div>`;
+    summaryEl.innerHTML = '';
+    return;
+  }
+  itemsEl.innerHTML = cart.map((item,i)=>{
+    const c = COLORS[item.network]||COLORS.MTN;
+    return `<div class="cart-item"><div class="cart-item-logo ${c.cls}">${item.network==='MTN'?'M':item.network==='Telecel'?'T':'AT'}</div><div class="cart-item-info"><div class="cart-item-name">${item.network} ${item.size}</div><div class="cart-item-meta">${item.validity}</div></div><div class="cart-item-price">GH₵${item.price.toFixed(2)}</div><button class="cart-item-remove" onclick="removeFromCart(${i})">✕</button></div>`;
+  }).join('');
+  const total = cart.reduce((s,i)=>s+i.price,0);
+  summaryEl.innerHTML = `<div class="cart-summary"><div class="cart-summary-row"><span>Subtotal</span><span>GH₵${total.toFixed(2)}</span></div><div class="cart-summary-row"><span>Service Fee</span><span>GH₵0.00</span></div><div class="cart-summary-row total"><span>Total</span><span>GH₵${total.toFixed(2)}</span></div><div class="phone-input-wrap"><label>Recipient Phone Number</label><div class="phone-row"><div class="phone-prefix">+233</div><input type="tel" class="phone-input" id="recipientPhone" placeholder="244000000" maxlength="9"/></div></div><button class="btn btn-green btn-lg btn-full" style="margin-top:16px;" onclick="checkout()">Checkout with MoMo →</button></div>`;
+}
+function removeFromCart(i){
+  cart.splice(i,1);
+  saveCart();
+  renderCart();
+  updateCartCount();
+}
+function checkout(){
+  const phone = document.getElementById('recipientPhone').value.trim();
+  if(!phone||phone.length!==9){showToast('Enter valid 9-digit phone number','error');return;}
+  const total = cart.reduce((s,i)=>s+i.price,0);
+  alert(`To complete payment:\n\n1. Dial *170#\n2. Send GH₵${total.toFixed(2)} to ${MOMO_NUMBER}\n3. Use Reference: SHEWU\n4. Bundle for: 0${phone}\n\nYou will receive your data instantly after payment.`);
+  cart = [];
+  saveCart();
+  renderCart();
+  updateCartCount();
+  showPage('home');
+}
+function updateCartCount(){
+  document.getElementById('cartCount').textContent = cart.length;
+}
+function showToast(msg,type='success'){
+  const toast = document.getElementById('toast');
+  const icon = document.getElementById('toastIcon');
+  const msgEl = document.getElementById('toastMsg');
+  icon.textContent = type==='success'?'✓':'⚠';
+  toast.className = `toast ${type} show`;
+  msgEl.textContent = msg;
+  setTimeout(()=>toast.classList.remove('show'),3000);
+}
+</script>
+</body>
+</html>
