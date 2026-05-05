@@ -28,3 +28,12 @@ app.get('/api/bundles', async (req, res) => {
 app.listen(process.env.PORT, () => {
   console.log(`Server running on port ${process.env.PORT}`);
 });
+const path = require('path');
+
+// Serve static files from React build or public folder
+app.use(express.static(path.join(__dirname, 'public'))); // or 'build' or 'dist'
+
+// Catch-all for React Router
+app.get('*', (req, res) => {
+  res.sendFile(path.join(__dirname, 'public', 'index.html')); // adjust folder name
+});
