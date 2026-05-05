@@ -47,7 +47,7 @@ app.get('/api/bundles', async (req, res) => {
   res.json(bundles);
 });
 
-const path = require('path');
+
 
 // Serve static files from public folder
 app.use(express.static(path.join(__dirname, 'public')));
