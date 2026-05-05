@@ -1,11 +1,33 @@
 const express = require('express');
-const mongoose = require('mongoose');
+const path = require('path');
 const cors = require('cors');
+const mongoose = require('mongoose');
 require('dotenv').config();
 
 const app = express();
 app.use(cors());
 app.use(express.json());
+
+mongoose.connect(process.env.MONGO_URI)
+  .then(() => console.log('MongoDB Connected'))
+  .catch(err => console.log('MongoDB Error:', err));
+
+// YOUR API ROUTES HERE
+// app.get('/api/bundles',...)
+
+// STATIC FILES
+app.use(express.static(path.join(__dirname, 'public')));
+
+// CATCH-ALL ROUTE
+app.get('*', (req, res) => {
+  res.sendFile(path.join(__dirname, 'public', 'index.html'));
+});
+
+// app.listen MUST BE LAST
+const PORT = process.env.PORT || 5000;
+app.listen(PORT, () => {
+  console.log(`Server running on port ${PORT}`);
+});
 
 mongoose.connect(process.env.MONGO_URI)
   .then(() => console.log('MongoDconnected'))
