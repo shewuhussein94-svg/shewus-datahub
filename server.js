@@ -19,7 +19,7 @@ mongoose.connect(process.env.MONGO_URI)
 app.use(express.static(path.join(__dirname, 'public')));
 
 // CATCH-ALL ROUTE
-app.get('*', (req, res) => {
+app.get( (req, res) => {
   res.sendFile(path.join(__dirname, 'public', 'index.html'));
 });
 
