@@ -51,7 +51,24 @@ app.get('/api/bundles', async (req, res) => {
 
 // Serve static files from public folder
 app.use(express.static(path.join(__dirname, 'public')));
+// Test route
+app.get("/api/test", (req, res) => {
+  res.json({ 
+    message: "API is working",
+    time: new Date().toISOString(),
+    status: "live"
+  });
+});
 
+// Health check route  
+app.get("/health", (req, res) => {
+  res.json({ status: "healthy", db: "connected" });
+});
+
+// Your catch-all MUST stay at the bottom
+app.use((req, res) => {
+  res.sendFile(path.join(__dirname, 'public', 'index.html'));
+});
 // Catch-all for React Router
 app.use((req, res) => {
   res.sendFile(path.join(__dirname, 'public', 'index.html'));
