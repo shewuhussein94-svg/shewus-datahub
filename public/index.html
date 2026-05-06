@@ -265,11 +265,12 @@ function addToCart(id){
   if (existing) {
     existing.qty += 1;
   } else {
-  cart.push({id:b._id,network:b.network,size:b.size,price:b.price,validity:b.validity}); }
+  cart.push({id:b._id,network:b.network,size:b.size,price:b.price,validity:b.validity, qty:1}); }
   saveCart();
   updateCartCount();
   showToast(`${b.network} ${b.size} added to cart`);
 } 
+window.addToCart = addToCart;
 function renderCart(){
   const itemsEl = document.getElementById('cartItems');
   const summaryEl = document.getElementById('cartSummary');
