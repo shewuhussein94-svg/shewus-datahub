@@ -199,7 +199,7 @@ async function loadBundlesFromAPI(){
   try {
     const res = await fetch(`${API_URL}/bundles`);
     const data = await res.json();
-    BUNDLES = data.map(b=>({
+    BUNDLES = data.data.map(b=>({
       id:b._id,
       network:b.network==='Vodafone'?'Telecel':b.network,
       size:b.size,
