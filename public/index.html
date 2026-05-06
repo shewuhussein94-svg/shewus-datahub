@@ -259,13 +259,13 @@ function filterNetwork(net, btn){
   renderShop();
 }
 function addToCart(id){
-  const b = BUNDLES.find(x=>x.id===id);
+  const b = BUNDLES.find(x=>x._id===id);
   if(!b) return;
   cart.push({id:b.id,network:b.network,size:b.size,price:b.price,validity:b.validity});
   saveCart();
   updateCartCount();
   showToast(`${b.network} ${b.size} added to cart`);
-} window.addToCart = addToCart;
+} 
 function renderCart(){
   const itemsEl = document.getElementById('cartItems');
   const summaryEl = document.getElementById('cartSummary');
