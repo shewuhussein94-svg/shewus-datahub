@@ -224,25 +224,27 @@ function setActiveTab(el){
   document.querySelectorAll('.nav-tab').forEach(t=>t.classList.remove('active'));
   el.classList.add('active');
 }
+
 function bundleHTML(b, showPopular=true){
-  const c = COLORS[b.network]||COLORS.MTN;
-  return `<div class="bundle-card ${c.top} ${b.popular && showPopular?'popular':''}">
-      ${b.popular && showPopular?'<div class="popular-badge">Popular</div>':''}
-      <div class="bundle-top">
-        <div class="net-logo ${c.cls}">${b.network==='MTN'?'M':b.network==='Telecel'?'T':'AT'}</div>
-        <div><div class="bundle-network">${b.network} Ghana</div><div class="bundle-size">${b.size}</div></div>
-      </div>
-      <div class="bundle-body">
-        <div class="bundle-validity">⏱ ${b.validity}</div>
-        <div class="bundle-desc">${b.desc}</div>
-        <ul class="bundle-features">${b.features.map(f=>`<li>${f}</li>`).join('')}</ul>
-      </div>
-      <div class="bundle-footer">
-        <div class="bundle-price-wrap"><div class="bundle-price">GH₵${b.price.toFixed(2)}</div><div class="bundle-price-sub">one-time</div></div>
-        <button class="add-btn ${c.cls}" onclick="addToCart('${b.id}')">Add to Cart</button>
-        
-      </div>
-    </div>`;
+  const c = COLORS[b.network] || COLORS.MTN;
+  return `
+  <div class="bundle-card ${c.top} ${b.popular && showPopular?'popular':''}">
+    ${b.popular && showPopular?'<div class="popular-badge">Popular</div>':''}
+    <div class="bundle-top">
+      <div class="net-logo ${c.cls}">${b.network==='MTN'?'M':b.network==='Telecel'?'T':b.network[0]}</div>
+      <div class="bundle-network">${b.network} Ghana</div>
+      <div class="bundle-size">${b.size}</div>
+    </div>
+    <div class="bundle-body">
+      <div class="bundle-validity">⏱ ${b.validity}</div>
+      <div class="bundle-desc">${b.desc}</div>
+      <ul class="bundle-features">${b.features.map(f=>`<li>${f}</li>`).join('')}</ul>
+    </div>
+    <div class="bundle-footer">
+      <div class="bundle-price-wrap"><div class="bundle-price">GHS${b.price.toFixed(2)}</div></div>
+      <button class="add-btn ${c.cls}" onclick="addToCart('${b._id}')">Add to Cart</button>
+    </div>
+  </div>`;
 }
 function renderFeatured(){
   const popular = BUNDLES.filter(b=>b.popular);
