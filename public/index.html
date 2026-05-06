@@ -1,4 +1,5 @@
-<!DOCTYPE html>
+<!-- V3.0 CACHE BUST - May 6 3:58am -->
+ <!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8"/>
@@ -283,7 +284,7 @@ function addToCart(id){
   renderCart();
   showToast(`${b.network} ${b.size} added to cart`);
 }
-window.addToCart = addToCart; // ← this line must be outside the function
+
 
 function renderCart(){
   const itemsEl = document.getElementById('cartItems');
