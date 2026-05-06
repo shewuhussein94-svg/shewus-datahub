@@ -303,6 +303,10 @@ function checkout(){
   showPage('home');
 }
 function updateCartCount(){
+    const count = cart.reduce((sum, item) => sum + item.qty, 0);
+    
+    if (cartCountEl) cartCountEl.textContent = count;
+    console.log('Cart count:', count);
   document.getElementById('cartCount').textContent = cart.length;
 }
 function showToast(msg,type='success'){
