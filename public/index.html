@@ -261,7 +261,7 @@ function filterNetwork(net, btn){
 function addToCart(id){
   const b = BUNDLES.find(x=>x._id===id);
   if(!b) return;
-  const existing = cart.fin(item => item.id === b._id);
+  const existing = cart.find(item => item.id === b._id);
   if (existing) {
     existing.qty += 1;
   } else {
