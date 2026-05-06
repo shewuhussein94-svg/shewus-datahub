@@ -243,7 +243,7 @@ function bundleHTML(b, showPopular=true){
     </div>
     <div class="bundle-footer">
       <div class="bundle-price-wrap"><div class="bundle-price">GHS${b.price.toFixed(2)}</div></div>
-      <button class="add-btn ${c.cls}" onclick="addToCart('${b._id}')">Add to Cart</button>
+      <button class="add-btn ${c.class}" onclick="addToCart(` + bundle._id + `)">Add to Cart</button>
     </div>
   </div>`;
 }
