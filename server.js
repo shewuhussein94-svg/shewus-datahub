@@ -14,14 +14,13 @@ mongoose.connect(process.env.MONGO_URI)
   .catch(err => console.log('MongoDB Error:', err));
 
 // YOUR API ROUTES HERE
-// app.get('/api/bundles',...)
 
 // STATIC FILES
 app.use(express.static(path.join(__dirname, 'public')));
 // ===== SHEWUS DATAHUB API ROUTES =====
 
-// 1. GET ALL DATA PLANS
-app.get("/api/plans", (req, res) => {
+// 1. GET ALL DATA BUNDLES
+app.get("/api/bundles", (req, res) => {
   const plans = [
     { id: 1, network: "MTN", size: "1GB", price: 5, validity: "30 days" },
     { id: 2, network: "MTN", size: "2GB", price: 9, validity: "30 days" },
