@@ -240,7 +240,7 @@ function bundleHTML(b, showPopular=true){
       <div class="bundle-footer">
         <div class="bundle-price-wrap"><div class="bundle-price">GH₵${b.price.toFixed(2)}</div><div class="bundle-price-sub">one-time</div></div>
         <button class="add-btn ${c.cls}" onclick="addToCart('${b.id}')">Add to Cart</button>
-        window.addToCart = addToCart;
+        
       </div>
     </div>`;
 }
@@ -261,7 +261,11 @@ function filterNetwork(net, btn){
 function addToCart(id){
   const b = BUNDLES.find(x=>x._id===id);
   if(!b) return;
-  cart.push({id:b.id,network:b.network,size:b.size,price:b.price,validity:b.validity});
+  const existing = cart.fin(item => item.id === b._id);
+  if (existing) {
+    existing.qty += 1;
+  } else {
+  cart.push({id:b._id,network:b.network,size:b.size,price:b.price,validity:b.validity}); }
   saveCart();
   updateCartCount();
   showToast(`${b.network} ${b.size} added to cart`);
