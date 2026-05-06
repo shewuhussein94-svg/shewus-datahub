@@ -240,6 +240,7 @@ function bundleHTML(b, showPopular=true){
       <div class="bundle-footer">
         <div class="bundle-price-wrap"><div class="bundle-price">GH₵${b.price.toFixed(2)}</div><div class="bundle-price-sub">one-time</div></div>
         <button class="add-btn ${c.cls}" onclick="addToCart('${b.id}')">Add to Cart</button>
+        window.addToCart = addToCart;
       </div>
     </div>`;
 }
@@ -264,7 +265,7 @@ function addToCart(id){
   saveCart();
   updateCartCount();
   showToast(`${b.network} ${b.size} added to cart`);
-}
+} window.addToCart = addToCart;
 function renderCart(){
   const itemsEl = document.getElementById('cartItems');
   const summaryEl = document.getElementById('cartSummary');
