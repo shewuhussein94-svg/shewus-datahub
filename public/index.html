@@ -259,7 +259,14 @@ function filterNetwork(net, btn){
   renderShop();
 }
 function addToCart(id){
+
+  console.log('Clicked ID:', id); // ← debug
+  console.log('BUNDLES:', BUNDLES); // ← debug
   const b = BUNDLES.find(x=>x._id===id);
+  if(!b) { console.error('Bundle not found:', id); return; }
+  
+
+  
   if(!b) return;
   
   const existing = cart.find(item => item.id === b._id);
