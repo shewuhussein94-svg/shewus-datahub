@@ -184,7 +184,7 @@ header{background:var(--white);border-bottom:1px solid var(--border);position:st
 <div class="toast" id="toast"><span class="toast-icon" id="toastIcon">✓</span><span id="toastMsg"></span></div>
 <script>
 const MOMO_NUMBER = '0552718330';
-const API_URL = 'https://shewus-datahub.onrender.com/api';
+const API_URL = '';
 let BUNDLES = [];
 const COLORS = {MTN:{cls:'mtn',top:'mtn-card'},Telecel:{cls:'telecel',top:'telecel-card'},AirtelTigo:{cls:'airteltigo',top:'airteltigo-card'},Vodafone:{cls:'telecel',top:'telecel-card'}};
 let cart = JSON.parse(localStorage.getItem('dgh_cart')||'[]');
@@ -198,7 +198,7 @@ document.addEventListener('DOMContentLoaded',async()=>{
 });
 async function loadBundlesFromAPI(){
   try {
-    const res = await fetch(`${API_URL}/bundles`);
+    const res = await fetch('/api/bundles');
     const data = await res.json();
     BUNDLES = data.data.map(b=>({
       id:b._id,
